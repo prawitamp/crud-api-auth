@@ -1,0 +1,62 @@
+get:
+  tags:
+    - Transactions
+  summary: Get a transaction by ID
+  description: Retrieve a single transaction by its unique ID.
+  parameters:
+    - in: path
+      name: id
+      required: true
+      description: Unique identifier of the transaction
+      schema:
+        type: string
+  responses:
+    200:
+      description: Transaction found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: success
+              message:
+                type: string
+                example: Transaction found
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  amount:
+                    type: number
+                  type:
+                    type: string
+                  account_id:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+    400:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Invalid transaction ID
+    404:
+      description: Transaction not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Transaction not found
+    500:
+      description: Internal server error

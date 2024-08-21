@@ -1,0 +1,68 @@
+post:
+  tags:
+    - Users
+  summary: Register a new user
+  description: Register a new user with name, email, and password.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: John Doe
+            email:
+              type: string
+              example: johndoe@example.com
+            password:
+              type: string
+              example: password123
+            profile:
+              type: object
+              properties:
+                identity_type:
+                  type: string
+                  example: KTP
+                identity_number:
+                  type: string
+                  example: 123456789
+                address:
+                  type: string
+                  example: 123 Main St
+  responses:
+    201:
+      description: User created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: success
+              message:
+                type: string
+                example: User created
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+    400:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Email already exists or Invalid input data
+    500:
+      description: Internal server error

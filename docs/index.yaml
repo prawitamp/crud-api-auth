@@ -1,0 +1,32 @@
+openapi: 3.0.1
+info:
+  title: Banking System API
+  description: API for managing users, accounts, and transactions.
+  version: 1.0.0  
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local server
+tags:
+  - name: Users
+    description: Operations related to users
+  - name: Accounts
+    description: Operations related to bank accounts
+  - name: Transactions
+    description: Operations related to transactions
+paths:
+  /users:
+    $ref: './paths/users/users.yaml'
+  /users/{id}:
+    $ref: './paths/users/userById.yaml'
+  /auth/register:
+    $ref: './paths/auth/authRegister.yaml'
+  /auth/login:
+    $ref: './paths/auth/authLogin.yaml'
+  /accounts:
+    $ref: './paths/accounts/accounts.yaml'
+  /accounts/{id}:
+    $ref: './paths/accounts/accountById.yaml'
+  /transactions:
+    $ref: './paths/transactions/transactions.yaml'
+  /transactions/{id}:
+    $ref: './paths/transactions/transactionById.yaml'

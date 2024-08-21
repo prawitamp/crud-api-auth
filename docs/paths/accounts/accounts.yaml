@@ -1,0 +1,98 @@
+get:
+  tags:
+    - Accounts
+  summary: Get all accounts
+  description: Retrieve all bank accounts from the database.
+  responses:
+    200:
+      description: A list of accounts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: success
+              message:
+                type: string
+                example: Accounts found
+              data:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 10
+                  accounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        account_number:
+                          type: string
+                        balance:
+                          type: number
+                        user_id:
+                          type: string
+    500:
+      description: Internal server error
+post:
+  tags:
+    - Accounts
+  summary: Create a new account
+  description: Create a new bank account for a user.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            account_number:
+              type: string
+              example: 1234567890
+            balance:
+              type: number
+              example: 1000.50
+            user_id:
+              type: string
+              example: 123
+  responses:
+    201:
+      description: Account created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: success
+              message:
+                type: string
+                example: Account created
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  account_number:
+                    type: string
+                  balance:
+                    type: number
+                  user_id:
+                    type: string
+    400:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Invalid input data
+    500:
+      description: Internal server error
